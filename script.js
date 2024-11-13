@@ -29,33 +29,14 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// Article Carousel (with class .artikel-slide)
-let currentArticleSlide = 0;
-const articleSlides = document.querySelectorAll('.artikel-slide');
-const totalArticleSlides = articleSlides.length;
+let currentSlide = 0;
+    const slides = document.querySelectorAll('.artikel');
 
-document.querySelector('.artikel .next').addEventListener('click', () => {
-  changeArticleSlide(1);
-});
-
-document.querySelector('.artikel .prev').addEventListener('click', () => {
-  changeArticleSlide(-1);
-});
-
-function changeArticleSlide(direction) {
-  articleSlides[currentArticleSlide].style.display = 'none'; // Hide current slide
-
-  currentArticleSlide = (currentArticleSlide + direction + totalArticleSlides) % totalArticleSlides; // Update slide index
-
-  articleSlides[currentArticleSlide].style.display = 'block'; // Show new slide
-}
-
-// Initialize the first article slide
-document.addEventListener('DOMContentLoaded', () => {
-  articleSlides.forEach((slide, index) => {
-    slide.style.display = index === 0 ? 'block' : 'none';
-  });
-});
+    function changeSlide(n) {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + n + slides.length) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }
 // Tutup dropdown ketika klik di luar
 window.onclick = function(event) {
   if (!event.target.matches('.dropbtn')) {
